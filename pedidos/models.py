@@ -22,6 +22,15 @@ class Pedido(models.Model):
 	direccion_evento = 	models.CharField(max_length=200, verbose_name="direccion del evento")
 	estado = models.IntegerField(choices=ESTADOS_DEL_PEDIDO, default=PEDIDO_PENDIENTE, editable=False)
 	creador = models.ForeignKey(User, null=True, editable=False)
+	
+	class Meta:
+		permissions = (
+			("view_pedido", "Puede ver la lista de pedidos"),
+			("cancel_pedido", "Puede cancelar un pedido"),
+			("deliver_pedido", "Puede entregar un pedido"),
+			("withdraw_pedido", "Puede retirar un pedido"),
+		)
 
 	def __str__(self):
 		return str(self.id)
+

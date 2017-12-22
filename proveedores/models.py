@@ -10,5 +10,8 @@ class proveedor(models.Model):
 	email = models.CharField(max_length=20, null=True, blank=True)
 	borrado = models.BooleanField(default=False, editable=False)
 
+	class Meta:
+		permissions = (("view_proveedor", "Puede ver la lista de proveedores"))
+
 	def __str__(self):
 		return self.nombre
