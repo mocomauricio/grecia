@@ -14,14 +14,14 @@ ESTADOS_DEL_PEDIDO = (
 )
 
 class Pedido(models.Model):
-	presupuesto = models.ForeignKey("presupuestos.Presupuesto", editable=False)
+	presupuesto = models.ForeignKey("presupuestos.Presupuesto", editable=False, on_delete=models.CASCADE)
 	fecha_estimada_entrega = models.DateField(verbose_name="fecha estimada de entrega")
 	fecha_entrega = models.DateField(null=True, editable=True)
 	fecha_estimada_retiro = models.DateField(verbose_name="fecha estimada de retiro")
 	fecha_retiro = models.DateField(null=True, editable=True)
 	direccion_evento = 	models.CharField(max_length=200, verbose_name="direccion del evento")
 	estado = models.IntegerField(choices=ESTADOS_DEL_PEDIDO, default=PEDIDO_PENDIENTE, editable=False)
-	creador = models.ForeignKey(User, null=True, editable=False)
+	creador = models.ForeignKey(User, null=True, editable=False, on_delete=models.CASCADE)
 	
 	class Meta:
 		permissions = (

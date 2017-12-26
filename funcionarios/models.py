@@ -16,7 +16,9 @@ class Funcionario(models.Model):
 	borrado = models.BooleanField(default=False, editable=False)
 	
 	class Meta:
-		permissions = (("view_funcionario", "Puede ver la lista de funcionarios"))
+		permissions = (
+			("view_funcionario", "Puede ver la lista de funcionarios"),
+		)
 
 	def get_edad(self):
 		fecha_actual = date.today()
@@ -50,11 +52,13 @@ class Funcionario(models.Model):
 		return self.nombre
 
 class FuncionarioUsuario(models.Model):
-	funcionario = models.ForeignKey(Funcionario, unique=True)
-	usuario = models.ForeignKey(User, unique=True, verbose_name="usuario asignado")
+	funcionario = models.ForeignKey(Funcionario, unique=True, on_delete=models.CASCADE)
+	usuario = models.ForeignKey(User, unique=True, verbose_name="usuario asignado", on_delete=models.CASCADE)
 
 	class Meta:
-		permissions = (("can_assign_user", "Puede asignar un usuario a un funcionario"))
+		permissions = (
+			("can_assign_user", "Puede asignar un usuario a un funcionario"),
+		)
 
 	def __str__(self):
 		return self.usuario.username

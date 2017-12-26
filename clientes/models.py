@@ -12,7 +12,9 @@ class Cliente(models.Model):
 	borrado = models.BooleanField(default=False, editable=False)
 	
 	class Meta:
-		permissions = (("view_cliente", "Puede ver la lista de clientes"))
+		permissions = (
+			("view_cliente", "Puede ver la lista de clientes"),
+		)
 
 	def __str__(self):
 		return self.nombre

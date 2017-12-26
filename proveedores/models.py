@@ -11,7 +11,9 @@ class proveedor(models.Model):
 	borrado = models.BooleanField(default=False, editable=False)
 
 	class Meta:
-		permissions = (("view_proveedor", "Puede ver la lista de proveedores"))
+		permissions = (
+			("view_proveedor", "Puede ver la lista de proveedores"),
+		)
 
 	def __str__(self):
 		return self.nombre

@@ -7,7 +7,9 @@ class Servicio(models.Model):
 	borrado = models.BooleanField(default=False, editable=False)
 
 	class Meta:
-		permissions = (("view_servicio", "Puede ver la lista de servicios"))
+		permissions = (
+			("view_servicio", "Puede ver la lista de servicios"),
+		)
 
 	def __str__(self):
 		return self.descripcion
