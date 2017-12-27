@@ -19,7 +19,7 @@ class Articulo(models.Model):
 	categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
 	existencia = models.IntegerField(default=0, editable=False)
 	precio_unitario = models.DecimalField(max_digits=15, decimal_places=2)
-	proveedores = models.ManyToManyField('proveedores.Proveedor', null=True, blank=True)
+	proveedores = models.ManyToManyField('proveedores.Proveedor', blank=True)
 	borrado = models.BooleanField(default=False, editable=False)
 
 	class Meta:

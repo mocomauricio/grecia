@@ -8,7 +8,7 @@ class Cliente(models.Model):
 	telefono = models.CharField(max_length=20, null=True, blank=True)
 	celular = models.CharField(max_length=20, null=True, blank=True)
 	direccion = models.CharField(max_length=200, null=True, blank=True)
-	email = models.CharField(max_length=20, null=True, blank=True)
+	email = models.CharField(max_length=100, null=True, blank=True)
 	borrado = models.BooleanField(default=False, editable=False)
 	
 	class Meta:

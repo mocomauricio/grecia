@@ -11,9 +11,12 @@ class ClienteAdmin(admin.ModelAdmin):
 	ordering = ['nombre']
 	search_fields = ['nombre', '^cedula_identidad', '^ruc']
 	list_per_page = 30
-	actions = ['set_no_borrado']
+	actions = ['set_no_borrado', 'set_borrado']
 
 	def set_no_borrado(modeladmin, request, queryset):
 		queryset.update(borrado=False)
-
 	set_no_borrado.short_description = 'marcar como no borrado'
+
+	def set_borrado(modeladmin, request, queryset):
+		queryset.update(borrado=True)
+	set_borrado.short_description = 'marcar como borrado'

@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Presupuesto(models.Model):
-	fecha_carga = models.DateField(auto_now_add=True)
+	fecha_carga = models.DateField(auto_now_add=True, verbose_name="fecha de carga")
 	cliente = models.ForeignKey(User, on_delete=models.CASCADE)
 	total = models.DecimalField(max_digits=15, decimal_places=2)
 	aprobado = models.BooleanField(default=False, editable=False)
@@ -26,7 +26,7 @@ class PresupuestoArticulo(models.Model):
 	subtotal = models.DecimalField(max_digits=15, decimal_places=2)
 	borrado = models.BooleanField(default=False, editable=False)
 
-class PresupuestoArticulo(models.Model):
+class PresupuestoServicio(models.Model):
 	presupuesto = models.ForeignKey(Presupuesto, on_delete=models.CASCADE)
 	servicio = models.ForeignKey("servicios.Servicio", on_delete=models.CASCADE)
 	cantidad = models.DecimalField(max_digits=15, decimal_places=2)

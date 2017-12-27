@@ -4,12 +4,13 @@ from datetime import date
 
 # Create your models here.
 class Funcionario(models.Model):
-	nombre = models.CharField(max_length=200, verbose_name="nombre o razon social")
+	nombres = models.CharField(max_length=200)
+	apellidos =  models.CharField(max_length=200)
 	cedula_identidad = models.CharField(max_length=10, verbose_name="cedula de identidad", null=True, blank=True)
 	telefono = models.CharField(max_length=20, null=True, blank=True)
 	celular = models.CharField(max_length=20, null=True, blank=True)
 	direccion = models.CharField(max_length=200, null=True, blank=True)
-	email = models.CharField(max_length=20, null=True, blank=True)
+	email = models.CharField(max_length=100, null=True, blank=True)
 	fecha_nacimiento = models.DateField(verbose_name="fecha de nacimiento", null=True, blank=True)
 	fecha_ingreso = models.DateField(verbose_name="fecha de ingreso", null=True, blank=True)
 	salario = models.DecimalField(max_digits=15, decimal_places=2, null=True, blank=True)
@@ -48,14 +49,19 @@ class Funcionario(models.Model):
 			return funcionarios_usuarios[0]
 		return None
 
+	def get_full_name(self):
+		return self.nombres + " " + self.apellidos
+
 	def __str__(self):
-		return self.nombre
+		return self.get_full_name()
 
 class FuncionarioUsuario(models.Model):
-	funcionario = models.ForeignKey(Funcionario, unique=True, on_delete=models.CASCADE)
-	usuario = models.ForeignKey(User, unique=True, verbose_name="usuario asignado", on_delete=models.CASCADE)
+	funcionario = models.OneToOneField(Funcionario, on_delete=models.CASCADE)
+	usuario = models.OneToOneField(User, verbose_name="usuario asignado", on_delete=models.CASCADE)
 
 	class Meta:
+		verbose_name = 'usuario asignado a un funcionario'
+		verbose_name_plural = 'usuario asignado a un funcionario'
 		permissions = (
 			("can_assign_user", "Puede asignar un usuario a un funcionario"),
 		)
