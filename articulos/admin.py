@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.contrib.admin.decorators import register
 from extra.globals import separador_de_miles
 from .models import *
+from .forms import *
 
 # Register your models here.
 @register(Categoria)
@@ -25,6 +26,7 @@ class CategoriaAdmin(admin.ModelAdmin):
 
 @register(Articulo)
 class ArticuloAdmin(admin.ModelAdmin):
+	form = ArticuloForm
 	list_display  = ('descripcion', 'categoria', 'get_existencia', 'get_precio_unitario', 'borrado')
 	list_display_links = ('descripcion',)
 	list_filter = ('borrado', 'categoria')
