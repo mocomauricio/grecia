@@ -15,6 +15,7 @@ class Categoria(models.Model):
 		return self.descripcion
 
 class Articulo(models.Model):
+	codigo = models.CharField(max_length=100, unique=True)
 	descripcion = models.CharField(max_length=200)
 	categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
 	existencia = models.IntegerField(default=0, editable=False)

@@ -9,4 +9,10 @@ urlpatterns = [
         name='categoria-autocomplete',
     ),
 
+    url(
+        '^articulo-autocomplete/$',
+        ArticuloAutocomplete.as_view(),
+        name='articulo-autocomplete',
+    ),
+
 ]
